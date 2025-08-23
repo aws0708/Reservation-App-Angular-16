@@ -28,6 +28,7 @@ constructor(){
 
 // Creating a Reservation
   addReservation(reservation: Reservation): void {
+    reservation.id=Date.now().toString();
     this.reservations.push(reservation);
     localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
