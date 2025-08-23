@@ -22,7 +22,9 @@ private reservations : Reservation[] =[];
 
 // Creating a Reservation
   addReservation(reservation: Reservation): void {
-    this.reservations.push(reservation)
+    this.reservations.push(reservation);
+    console.log(this.reservations);
+    
   }
 
 // Deleting a Reservation
