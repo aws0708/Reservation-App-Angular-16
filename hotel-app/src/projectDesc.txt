@@ -19,6 +19,15 @@ App Root --> Router(outlet) -->ReservationList Component |
 
 
 ==========================================
+
+Reactive Form Validation --> Validate form in Typescript Class
+Template Driven Form Validation --> Validate form in HTML template 
+
+
+
+
+
+============================================
 ng g module home
 ng g c home --module=home 
 
