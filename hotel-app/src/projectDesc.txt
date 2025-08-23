@@ -37,3 +37,5 @@ ng g c reservation-list --module=reservation
 ng g service reservation/reservation (creating service inside reservation module)
 
 ng g interface models/reservation
+
+npm i bootstrap@5.3    --> In styles.css --> @import "bootstrap/dist/css/bootstrap.min.css";
