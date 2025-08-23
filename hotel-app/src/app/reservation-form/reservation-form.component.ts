@@ -16,7 +16,7 @@ export class ReservationFormComponent implements OnInit {
     this.reservationForm=this.formBuilder.group({
       checkInDate : ['', Validators.required],
       checkOutDate : ['', Validators.required],
-      guestName : ['', [Validators.required, Validators.minLength(5)]],
+      guestName : ['', [Validators.required]],
       guestEmail : ['', [Validators.required,Validators.email]],
       roomNumber : ['', Validators.required],
     })
