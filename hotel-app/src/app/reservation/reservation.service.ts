@@ -44,7 +44,7 @@ constructor(){
 
 // Updating a Reservation
   updateReservation(id:string, updatedReservation: Reservation): void {
-    // console.log("Update Reservation ID ",updatedReservation.id);  --undefined
+    // console.log("Update Reservation ID ",updatedReservation.id);  --undefined(so we need to assign it a value)
     updatedReservation.id = id;
     
     let index = this.reservations.findIndex(res => res.id === id);

@@ -14,6 +14,9 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     RouterLink,
     AppRoutingModule
+  ],
+  exports:[
+    HomeComponent
   ]
 })
 export class HomeModule { }
