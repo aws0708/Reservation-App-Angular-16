@@ -8,6 +8,12 @@ export class ReservationService {
 
 private reservations : Reservation[] =[];
 
+constructor(){
+  // service's constructor is the best place, where we can get our saved data from localStorage, even before the component is initialized
+  let savedReservations = localStorage.getItem("reservations");
+  this.reservations = savedReservations ? JSON.parse(savedReservations) : [];
+}
+
 // CRUD
 
 // Reading all reservations
@@ -23,20 +29,21 @@ private reservations : Reservation[] =[];
 // Creating a Reservation
   addReservation(reservation: Reservation): void {
     this.reservations.push(reservation);
-    console.log(this.reservations);
-    
+    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 // Deleting a Reservation
   deleteReservation(id: string): void {
     let index = this.reservations.findIndex(res => res.id === id);
     this.reservations.splice(index,1);
+    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 // Updating a Reservation
   updateReservation(updatedReservation: Reservation): void {
     let index = this.reservations.findIndex(res => res.id = updatedReservation.id);
     this.reservations[index] = updatedReservation;
+    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 }
