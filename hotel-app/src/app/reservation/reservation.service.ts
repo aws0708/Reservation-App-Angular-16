@@ -28,7 +28,9 @@ constructor(){
 
 // Creating a Reservation
   addReservation(reservation: Reservation): void {
+    // creating unique ID  -- this will be further used for routing and updating --[routerLink]="['/edit',reservation.id]"
     reservation.id=Date.now().toString();
+
     this.reservations.push(reservation);
     localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
@@ -41,8 +43,11 @@ constructor(){
   }
 
 // Updating a Reservation
-  updateReservation(updatedReservation: Reservation): void {
-    let index = this.reservations.findIndex(res => res.id = updatedReservation.id);
+  updateReservation(id:string, updatedReservation: Reservation): void {
+    // console.log("Update Reservation ID ",updatedReservation.id);  --undefined
+    updatedReservation.id = id;
+    
+    let index = this.reservations.findIndex(res => res.id === id);
     this.reservations[index] = updatedReservation;
     localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
