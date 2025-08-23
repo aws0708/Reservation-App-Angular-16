@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReservationFormComponent implements OnInit {
 
   reservationForm: FormGroup = new FormGroup({});
+  isEditMode: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private reservationService: ReservationService,
@@ -31,6 +32,7 @@ export class ReservationFormComponent implements OnInit {
     });
 
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isEditMode = !!id;  // double exclaimation converts a value into boolean
     if (id) {
       let reservation = this.reservationService.getReservation(id);  //getting the specific reservation with ID(unique)
       // showing the specific reservstion-form - which we want to edit
