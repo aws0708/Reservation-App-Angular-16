@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Reservation } from '../models/reservation';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
 
-private reservations : Reservation[] =[];
+  private apiUrl="http://localhost:3001";
+  private reservations : Reservation[] =[];
 
-// constructor(){
-//   // service's constructor is the best place, where we can get our saved data from localStorage, even before the component is initialized
-//   let savedReservations = localStorage.getItem("reservations");
-//   this.reservations = savedReservations ? JSON.parse(savedReservations) : [];
-// }
+
+// WE NEED CONSRUCTOR now for injecting the httpClient service for request operations
+constructor( private http:HttpClient ){}
+
 
 // CRUD
 
 
 // Reading all reservations
-  getReservations(): Reservation[] {
-    return this.reservations;
+  getReservations(): Observable<Reservation[]> {
+        return this.http.get<Reservation[]>(this.apiUrl + "/reservations")
   }
 
 // Reading individual reservation
@@ -33,14 +35,12 @@ private reservations : Reservation[] =[];
     reservation.id=Date.now().toString();
 
     this.reservations.push(reservation);
-    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 // Deleting a Reservation
   deleteReservation(id: string): void {
     let index = this.reservations.findIndex(res => res.id === id);
-    this.reservations.splice(index,1);
-    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
+    this.reservations.splice(index,1); 
   }
 
 // Updating a Reservation
@@ -50,7 +50,6 @@ private reservations : Reservation[] =[];
     
     let index = this.reservations.findIndex(res => res.id === id);
     this.reservations[index] = updatedReservation;
-    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 }
