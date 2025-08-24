@@ -35,12 +35,11 @@ export class ReservationFormComponent implements OnInit {
     this.isEditMode = !!id;  // double exclaimation converts a value into boolean
     // When we click Edit Reservation, the exact form with exact id should be opened with prfilled values(reservationForm.patchValue(reservation))
     if (id) {
-      let reservation = this.reservationService.getReservation(id);  //getting the specific reservation with ID(unique)
-      // showing the specific reservstion-form - which we want to edit
-      if (reservation) {
-        // patchValue to show the initally filled value (if it was filled)
-        this.reservationForm.patchValue(reservation);
-      }
+      this.reservationService.getReservation(id).subscribe(reservation => {
+        if (reservation) {
+          this.reservationForm.patchValue(reservation);
+        }
+      })
     }
   }
 
@@ -51,12 +50,18 @@ export class ReservationFormComponent implements OnInit {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
       if (id) {
         // UPDATE
-        this.reservationService.updateReservation(id, reservation)
+        this.reservationService.updateReservation(id, reservation).subscribe(()=>{
+          console.log("Update request processed");
+          
+        })
       }
 
       else {
         // NEW Reservation
-        this.reservationService.addReservation(reservation);
+        this.reservationService.addReservation(reservation).subscribe(()=>{
+          console.log("Add request processed");
+          
+        })
       }
 
 

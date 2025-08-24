@@ -25,31 +25,23 @@ constructor( private http:HttpClient ){}
   }
 
 // Reading individual reservation
-  getReservation(id: string): Reservation | undefined {
-    return this.reservations.find(res => res.id === id)
+  getReservation(id: string): Observable<Reservation>{
+    return this.http.get<Reservation>(this.apiUrl + "/reservation/" + id)
   }
 
 // Creating a Reservation
-  addReservation(reservation: Reservation): void {
-    // creating unique ID  -- this will be further used for routing and updating --[routerLink]="['/edit',reservation.id]"
-    reservation.id=Date.now().toString();
-
-    this.reservations.push(reservation);
+  addReservation(reservation: Reservation): Observable<void> {
+       return this.http.post<void>(this.apiUrl + "/reservation", reservation)
   }
 
 // Deleting a Reservation
-  deleteReservation(id: string): void {
-    let index = this.reservations.findIndex(res => res.id === id);
-    this.reservations.splice(index,1); 
+  deleteReservation(id: string): Observable<void> {
+    return this.http.delete<void>(this.apiUrl + "/reservation/" +id)
   }
 
 // Updating a Reservation
-  updateReservation(id:string, updatedReservation: Reservation): void {
-    // console.log("Update Reservation ID ",updatedReservation.id);  --undefined(so we need to assign it a value)
-    updatedReservation.id = id;    //assigning this ID so that it can be editted multiple times
-    
-    let index = this.reservations.findIndex(res => res.id === id);
-    this.reservations[index] = updatedReservation;
+  updateReservation(id:string, updatedReservation: Reservation): Observable<void> {
+      return this.http.put<void>(this.apiUrl + "/reservation/" +id, updatedReservation)
   }
 
 }
