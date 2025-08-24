@@ -39,3 +39,38 @@ ng g service reservation/reservation (creating service inside reservation module
 ng g interface models/reservation
 
 npm i bootstrap@5.3    --> In styles.css --> @import "bootstrap/dist/css/bootstrap.min.css";
+
+
+
+===============================================================================================
+MODERN WEB ARCHITECTURE 
+ 
+
+
+                      HTTP RESPONSE             
+                         +code <------------------|           
+ FRONTEND APPLICATION <-------------- BackEnd Application + RESTful API                       
+ (Angular,React, etc)                                   ^
+                      --------------->                  |
+                      HTTP REQUEST                      |
+                                                        |
+                                                        v 
+                                                     DATBASE
+                                                  (SQL or NoSQL)   
+
+
+HTTP REQUEST TYPES 
+1. GET      2. POST(CREATE)     3. DELETE      4. PUT(UPDATE)
+
+HTTP Response TYPES 
+1. 2xx - OK (Successful)
+2. 3xx - Redirection
+3. 4xx - Client Errors
+4. 5xx - Server Errors 
+
+
+====================================================================
+In this project/application --> We are using MOCKOON as a backend API 
+MOCKOON ---> mockoon.com 
+
+

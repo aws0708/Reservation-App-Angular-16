@@ -8,13 +8,14 @@ export class ReservationService {
 
 private reservations : Reservation[] =[];
 
-constructor(){
-  // service's constructor is the best place, where we can get our saved data from localStorage, even before the component is initialized
-  let savedReservations = localStorage.getItem("reservations");
-  this.reservations = savedReservations ? JSON.parse(savedReservations) : [];
-}
+// constructor(){
+//   // service's constructor is the best place, where we can get our saved data from localStorage, even before the component is initialized
+//   let savedReservations = localStorage.getItem("reservations");
+//   this.reservations = savedReservations ? JSON.parse(savedReservations) : [];
+// }
 
 // CRUD
+
 
 // Reading all reservations
   getReservations(): Reservation[] {
@@ -32,24 +33,24 @@ constructor(){
     reservation.id=Date.now().toString();
 
     this.reservations.push(reservation);
-    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
+    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 // Deleting a Reservation
   deleteReservation(id: string): void {
     let index = this.reservations.findIndex(res => res.id === id);
     this.reservations.splice(index,1);
-    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
+    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 // Updating a Reservation
   updateReservation(id:string, updatedReservation: Reservation): void {
     // console.log("Update Reservation ID ",updatedReservation.id);  --undefined(so we need to assign it a value)
-    updatedReservation.id = id;
+    updatedReservation.id = id;    //assigning this ID so that it can be editted multiple times
     
     let index = this.reservations.findIndex(res => res.id === id);
     this.reservations[index] = updatedReservation;
-    localStorage.setItem("reservations",JSON.stringify(this.reservations))    
+    // localStorage.setItem("reservations",JSON.stringify(this.reservations))    
   }
 
 }

@@ -33,6 +33,7 @@ export class ReservationFormComponent implements OnInit {
 
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.isEditMode = !!id;  // double exclaimation converts a value into boolean
+    // When we click Edit Reservation, the exact form with exact id should be opened with prfilled values(reservationForm.patchValue(reservation))
     if (id) {
       let reservation = this.reservationService.getReservation(id);  //getting the specific reservation with ID(unique)
       // showing the specific reservstion-form - which we want to edit
